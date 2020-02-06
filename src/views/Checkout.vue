@@ -1,18 +1,19 @@
 <template>
-   <Page>
-      <ServicesGrid />
-   </Page>
+  <Page>
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  </Page>
 </template>
 
 <script>
 // @ is an alias to /src
+import HelloWorld from '@/components/HelloWorld.vue'
 import Page from '@/components/Page.vue'
-import ServicesGrid from '@/components/ServicesGrid.vue'
 
 export default {
+   name: 'home',
    components: {
       Page,
-      ServicesGrid,
+      HelloWorld
    }
 }
 </script>
