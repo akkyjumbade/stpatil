@@ -1,21 +1,26 @@
 <template>
    <form @submit.prevent="login">
+      <TextInput label="Username or E-Mail" name="username" required />
+      <TextInput label="Password" name="password" type="password" required>
+         <p slot="footer" class="text-right"><router-link to="/forgot-password">Lost password?</router-link></p>
+      </TextInput>
       <div class="form-group">
-         <label class="control-label">Username or E-Mail</label>
-         <input class="form-control" placeholder="" name="username" required />
-      </div>
-      <div class="form-group">
-         <label class="control-label">Password</label>
-         <input class="form-control" placeholder="" name="password" type="password" required />
-      </div>
-      <div class="form-group">
-         <button :disabled="formLoading" class="btn btn-primary btn-block btn-lg">LOGIN</button>
+         <Button intent="primary" :loading="formLoading" label="LOGIN" />
       </div>
    </form>
 </template>
 
 <script>
+import TextInput from './TextInput'
+import Button from './Button'
+import { Toast } from '../functions.js'
+import { loginAsync } from '../services/authService.js'
+
 export default {
+   components: {
+      Button,
+      TextInput,
+   },
    data() {
       return {
          username: '',
@@ -28,13 +33,18 @@ export default {
       async login() {
          this.formLoading = true
          try {
-            const { data } = await this.$http.post('/login', {
-               username: this.username,
-               password: this.password,
+            const user = await loginAsync(this.username, this.password)
+            Toast.fire({
+               icon: user ? 'success': 'warning',
+               title: 'Login sucessful'
             })
-            console.log({ data })
+            this.$router.push('/')
          } catch (error) {
-            console.log({ error })
+            Toast.fire({
+               icon: 'error',
+               title: error.message
+            })
+            // console.log({ error })
          } finally {
             this.formLoading = false
          }

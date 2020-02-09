@@ -38,8 +38,9 @@
          <div class="navbar_menu">
             <ul >
                <li>
-                  <router-link to="/login">
-                     <span></span>
+                  <router-link to="/login" class="btn btn-primary">
+                     <i class="fa fa-user text-white"></i>
+                     <span class="text-white">LOGIN or REGISTER</span>
                   </router-link>
                </li>
             </ul>
@@ -53,16 +54,16 @@ export default {
    props: {
       logo: {
          type: String,
-         default: '@/assets/icon.png'
+         default: 'https://www.stpatil.com/wp-content/uploads/2019/12/500x500-png-logo.png'
       }
    },
    mounted() {
       const navbarEl = this.$refs.navbarEl
-      const logoEl = this.$refs.logoEl
+      // const logoEl = this.$refs.logoEl
       var img = new Image();
       img.onload = function () {
          document.body.style = `--navbar-height: ${navbarEl.clientHeight}px`
-         console.log(navbarEl.clientHeight, logoEl)
+         // console.log(navbarEl.clientHeight, logoEl)
       }
       img.src = this.logo;
 

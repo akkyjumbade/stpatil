@@ -1,5 +1,5 @@
 <template>
-   <Page title="Login or Register to continue">
+   <Page title="Lost password?">
       <div class="d-block text-center px-5">
          <a href="#" class="logo">
             <picture class="embed-responsive embed-responsive-1by1">
@@ -7,37 +7,17 @@
             </picture>
          </a>
       </div>
-      <div class="col-sm-6 offset-sm-3">
-         <ul class="nav-pills nav-fill nav justify-content-center">
-            <li class="nav-item">
-               <a @click.prevent="tab = 'login'" :class="{ 'disabled active': tab == 'login' }" class="nav-link" href="#">LOGIN</a>
-            </li>
-            <li class="nav-item">
-               <a @click.prevent="tab = 'register'" :class="{ 'disabled active': tab == 'register' }" class="nav-link" href="#">REGISTER</a>
-            </li>
-         </ul>
+      <div class="container py-5">
+         <ForgotPasswordForm />
       </div>
-      <div class="col-sm-6 offset-sm-3 py-5">
-         <LoginForm v-if="tab == 'login'" />
-         <ForgotPasswordForm v-else-if="tab == 'lost'" />
-         <RegisterForm v-else />
-      </div>
-      <p class="text-center">or join with</p>
-      <footer>
-         <button class="oauth_btn" @click="oauthLogin('google')">
-            <img src="@/assets/google-signin.png" />
-         </button>
-         <button class="oauth_btn" @click="oauthLogin('facebook')">
-            <img src="@/assets/facebook-signin.png" />
-         </button>
-      </footer>
+      <p class="text-center">
+         Remembered? <router-link to="/login">Login Now</router-link>
+      </p>
    </Page>
 </template>
 
 <script>
 // @ is an alias to /src
-import RegisterForm from '@/components/RegisterForm.vue'
-import LoginForm from '@/components/LoginForm.vue'
 import ForgotPasswordForm from '@/components/ForgotPasswordForm.vue'
 import Page from '@/components/Page'
 
@@ -48,8 +28,6 @@ export default {
    components: {
       Page,
       ForgotPasswordForm,
-      LoginForm,
-      RegisterForm
    },
    data() {
       return {

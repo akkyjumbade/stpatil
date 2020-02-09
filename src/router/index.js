@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+// import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
       path: '/login',
       name: 'login',
       component: () => import(/* webpackChunkName: "auth" */ '../views/Auth.vue')
+   },
+   {
+      path: '/forgot-password',
+      name: 'forgot-password',
+      component: () => import(/* webpackChunkName: "ForgotPassword" */ '../views/ForgotPassword.vue')
    },
 ]
 

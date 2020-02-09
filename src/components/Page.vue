@@ -1,10 +1,11 @@
 <template>
    <div>
-      <Navbar />
+      <Navbar v-if="hasNavbar" />
+      <Navbar v-if="hasBottomNav" />
       <main>
          <slot></slot>
       </main>
-      <PageFooter />
+      <PageFooter v-if="hasFooter" />
    </div>
 </template>
 
@@ -18,6 +19,18 @@ export default {
       Navbar,
    },
    props: {
+      hasNavbar: {
+         type: Boolean,
+         default: false
+      },
+      hasFooter: {
+         type: Boolean,
+         default: false
+      },
+      hasBottomNav: {
+         type: Boolean,
+         default: false
+      },
       title: {
          type: String,
          default: ''

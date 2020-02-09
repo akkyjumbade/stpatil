@@ -1,9 +1,23 @@
-@import url("https://fonts.googleapis.com/css?family=Gothic+A1:400,500,600,700&display=swap");
+$primarColor: #28156d;
+$themeColor: #e67816;
+$theme-colors: (
+  "primary": $primarColor,
+  "danger": $themeColor
+);
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700&display=swap");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css');
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/slick-carousel/slick/slick.css";
+// @import "../../node_modules/slick-carousel/slick/ajax-loader.gif";
+@import "../../node_modules/slick-carousel/slick/slick-theme.css";
+
+@import "../../node_modules/sweetalert2/src/sweetalert2.scss";
 
 :root {
-   --primary-font: 'Gothic A1', sans-serif;
+   --primary-font: 'Open Sans', sans-serif;
    --text-size: 1rem;
+   --primary-color: var(--primary);
+   --theme-color: var(--danger);
 }
 body {
    font-family: var(--primary-font);
@@ -16,5 +30,12 @@ body {
    box-sizing: border-box;
    #app {
       flex: 1;
+   }
+}
+
+@media screen and (max-width: 670px)
+{
+   .swal2-popup.swal2-toast {
+      width: 95vw !important;
    }
 }
