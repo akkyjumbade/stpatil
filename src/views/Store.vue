@@ -10,9 +10,9 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import Page from '@/components/Page.vue'
 
 export default {
-  components: {
-     Page,
-    HelloWorld
-  }
+   components: {
+      Page,
+      HelloWorld
+   }
 }
 </script>

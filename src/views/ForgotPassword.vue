@@ -39,10 +39,10 @@ export default {
       oauthLogin: async (type) => {
          try {
             const user = await oauthLoginAsync(type)
-            console.log({user})
+            JSON.stringify({user})
          } catch (error) {
             // this.registerFormErrors = error.errors
-            console.log({error})
+            // console.log({error})
          }
       }
    },

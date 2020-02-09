@@ -1,7 +1,7 @@
 import Axios from "axios";
 import Swal from 'sweetalert2'
 
-export const baseURL = 'https://stpatil.com/wp-json/'
+export const baseURL = 'https://www.stpatil.com/wp-json/'
 export const http = Axios.create({
    baseURL,
 })

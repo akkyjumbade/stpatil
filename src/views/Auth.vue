@@ -1,13 +1,7 @@
 <template>
    <Page title="Login or Register to continue">
-      <div class="d-block text-center px-5">
-         <a href="#" class="logo">
-            <picture class="embed-responsive embed-responsive-1by1">
-               <img src="https://www.stpatil.com/wp-content/uploads/2019/12/500x500-png-logo.png" class="embed-responsive-item" />
-            </picture>
-         </a>
-      </div>
-      <div class="col-sm-6 offset-sm-3">
+      <Appbar :back="true" />
+      <div class="layout_container mt-3">
          <ul class="nav-pills nav-fill nav justify-content-center">
             <li class="nav-item">
                <a @click.prevent="tab = 'login'" :class="{ 'disabled active': tab == 'login' }" class="nav-link" href="#">LOGIN</a>
@@ -17,13 +11,13 @@
             </li>
          </ul>
       </div>
-      <div class="col-sm-6 offset-sm-3 py-5">
+      <div class="layout_container py-3">
          <LoginForm v-if="tab == 'login'" />
          <ForgotPasswordForm v-else-if="tab == 'lost'" />
          <RegisterForm v-else />
       </div>
       <p class="text-center">or join with</p>
-      <footer>
+      <footer class="layout_container">
          <button class="oauth_btn" @click="oauthLogin('google')">
             <img src="@/assets/google-signin.png" />
          </button>
@@ -40,12 +34,15 @@ import RegisterForm from '@/components/RegisterForm.vue'
 import LoginForm from '@/components/LoginForm.vue'
 import ForgotPasswordForm from '@/components/ForgotPasswordForm.vue'
 import Page from '@/components/Page'
+import Appbar from '@/components/Appbar'
 
 import { oauthLoginAsync } from '@/services/authService.js'
 import * as firebase from 'firebase';
+import { Toast } from '../functions'
 
 export default {
    components: {
+      Appbar,
       Page,
       ForgotPasswordForm,
       LoginForm,
@@ -61,10 +58,16 @@ export default {
       oauthLogin: async (type) => {
          try {
             const user = await oauthLoginAsync(type)
-            console.log({user})
+            Toast.fire({
+               icon: 'success',
+               title: 'Login successful, Welcome ' + user.name
+            })
          } catch (error) {
             // this.registerFormErrors = error.errors
-            console.log({error})
+            Toast.fire({
+               icon: 'error',
+               title: error.message
+            })
          }
       }
    },
@@ -103,6 +106,12 @@ footer {
    gap: 1rem;
    align-items: center;
    justify-content: center;
-   padding: 0 1rem;
+   // padding: 0 1rem;
+}
+@media screen and (min-width: 700px) {
+   .layout_container {
+      max-width: 300px;
+      margin: 0 auto;
+   }
 }
 </style>

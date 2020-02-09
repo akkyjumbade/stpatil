@@ -1,9 +1,12 @@
 <template>
    <nav class="navbar" ref="navbarEl">
       <div class="container px-0">
+         <button v-if="back" class="btn" @click.prevent="$router.go(-1)">
+            <i class="fa fa-chevron-left"></i>
+         </button>
          <a href="/" class="navicon">
-            <picture class="embed-responsive embed-responsive-1by1">
-               <img :src="logo" ref="logoEl" alt="Logo" class="embed-responsive-item" />
+            <picture class="embed_responsive embed_responsive-1by1">
+               <img :src="logo" ref="logoEl" alt="Logo" class="embed_responsive-item" />
             </picture>
          </a>
          <div class="navbar_menu">
@@ -27,10 +30,14 @@
 <script>
 export default {
    props: {
+      back: {
+         type: [Boolean],
+         default: false
+      },
       logo: {
          type: String,
          default: 'https://www.stpatil.com/wp-content/uploads/2019/12/500x500-png-logo.png'
-      }
+      },
    },
    mounted() {
 
@@ -53,6 +60,9 @@ nav {
       .navicon {
          display: block;
          width: 50px;
+         img {
+            max-width: 100%;
+         }
       }
       .navbar_menu {
          ul {

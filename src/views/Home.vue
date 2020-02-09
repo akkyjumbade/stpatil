@@ -3,6 +3,8 @@
       <Appbar />
       <ServicesGrid />
       <Carousels class="carousel container" />
+      <ProductsSection title="" />
+      {{ resources }}
    </Page>
 </template>
 
@@ -11,24 +13,24 @@
 import Page from '@/components/Page.vue'
 import ServicesGrid from '@/components/ServicesGrid.vue'
 import Carousels from '@/components/Carousels'
+import ProductsSection from '@/components/ProductsSection'
 import Appbar from '@/components/Appbar'
+import { mapState, mapActions } from 'vuex'
 
 export default {
    components: {
+      ProductsSection,
       Carousels,
       Appbar,
       Page,
       ServicesGrid,
    },
-   computed: {
-      slides() {
-         return [
-            {
-               title: '',
-               src: '//placehold.it/600x100',
-            }
-         ]
-      }
+   computed:  mapState(['resources']),
+   methods: {
+      ...mapActions(['getResources'])
+   },
+   created() {
+      this.getResources()
    }
 }
 </script>
