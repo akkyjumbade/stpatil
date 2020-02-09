@@ -108,10 +108,13 @@ footer {
    justify-content: center;
    // padding: 0 1rem;
 }
-@media screen and (min-width: 700px) {
-   .layout_container {
+.layout_container {
+   // max-width: 300px;
+   margin: 0 auto;
+   padding: 0 1rem;
+   @media screen and (min-width: 700px) {
       max-width: 300px;
-      margin: 0 auto;
    }
 }
+
 </style>

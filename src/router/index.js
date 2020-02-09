@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import { Toast } from '../functions'
 // import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
@@ -47,11 +48,15 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
    let isPrivate = to.matched.some(record => record.meta.requiresAuth)
-   console.log(to)
    if(isPrivate) {
       next({
          path: '/login',
          query: to.fullPath,
+      })
+      Toast.fire({
+         timer: 3000,
+         icon: 'info',
+         title: 'Login to continue...'
       })
       return
    }
