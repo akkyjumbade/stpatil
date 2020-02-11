@@ -17,10 +17,6 @@ const store = new Vuex.Store({
             ...state,
             ...payload
          }
-         this.state.resources = {
-            ...state,
-            ...payload
-         }
       },
    },
    actions: {

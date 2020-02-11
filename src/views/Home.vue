@@ -3,24 +3,25 @@
       <Appbar />
       <ServicesGrid />
       <Carousels :options='{ autoPlay: true }' v-if="heroSlides" :slides="heroSlides" class="carousel container" />
-      <ProductsSection v-for="(item, itemkey) in productCategories" :title="item.name" :category="item" :key="itemkey" />
-      <!-- {{ productCategories }} -->
+      <ProductsCarousel v-for="(item, itemkey) in productCategories" :key="itemkey" :category="item" />
    </Page>
 </template>
 
 <script>
 // @ is an alias to /src
 import Page from '@/components/Page.vue'
+import ProductsCarousel from '@/components/ProductsCarousel'
 import ServicesGrid from '@/components/ServicesGrid.vue'
 import Carousels from '@/components/Carousels'
-import ProductsSection from '@/components/ProductsSection'
 import Appbar from '@/components/Appbar'
 import { mapState, mapActions } from 'vuex'
 import { http, } from '../functions'
+import productsData from '@/store/data/products.json'
+import productCategoriesData from '@/store/data/product_categories.json'
 
 export default {
    components: {
-      ProductsSection,
+      ProductsCarousel,
       Carousels,
       Appbar,
       Page,
@@ -30,10 +31,16 @@ export default {
       return {
          slides: null,
          heroSlides: null,
-         productCategories: null,
+         productCategories: productCategoriesData,
+         products: productsData,
       }
    },
-   computed:  mapState(['resources']),
+   computed: {
+      ...mapState(['resources']),
+      state() {
+         return this.$store.state
+      }
+   },
    methods: {
       ...mapActions(['getResources']),
       async getCollection() {

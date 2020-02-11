@@ -3,6 +3,7 @@ module.exports = {
    css: {
       extract: true,
    },
+   devServer: {  },
    publicPath: '/assets/',
    outputDir: '../stpatil.com/assets/'
 }

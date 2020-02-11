@@ -6,7 +6,7 @@ export const baseURL = 'https://www.stpatil.com/wp-json/'
 export const http = Axios.create({
    baseURL,
    headers: {
-      // Authorization: "Basic Y2tfODFlZDliMmY1NGQ4MGE3OWRjNzYwYTczMjRiYTUxOWZmOGY4MzhhMDpjc19kNjUxYjlkNzNhODViMjk4OGM3MjUyNDhiNDg5MDY1ZDJmMDE1YTM4",
+      Authorization: "Bearer 73iiSR4zyJQ9iMKyimp0hffeB5BTJ7JD",
    }
 })
 

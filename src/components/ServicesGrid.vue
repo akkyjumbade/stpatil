@@ -81,6 +81,12 @@
                </router-link>
             </div>
             <div v-if="isExpanded">
+               <router-link class="icon_btn" to="/service/insurance">
+                  <img src="@/assets/services/insurance_icon.png" />
+                  <span class="btn_label">Insurance</span>
+               </router-link>
+            </div>
+            <div v-if="isExpanded">
                <router-link class="icon_btn" to="/service/water_bill">
                   <img src="@/assets/services/water_bill_icon.png" />
                   <span class="btn_label">Water Bill</span>
@@ -116,7 +122,6 @@ export default {
    background: var(--primary-color);
    padding: 1rem 0;
    @media screen and (max-width: 700px) {
-      padding: 2rem 0;
       .container {
          padding: 0;
       }
